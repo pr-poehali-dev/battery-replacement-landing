@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import Icon from "@/components/ui/icon";
 
 const BEFORE_IMG = "https://cdn.poehali.dev/projects/35584a31-c265-46ef-9e16-d65f79f0a648/files/a499cc80-3930-433b-8c15-0f96e0f4367a.jpg";
@@ -98,6 +98,89 @@ function Stars({ count }: { count: number }) {
       {Array.from({ length: count }).map((_, i) => (
         <Icon key={i} name="Star" size={16} className="text-yellow-400 fill-yellow-400" />
       ))}
+    </div>
+  );
+}
+
+function LeadForm() {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!name.trim() || !phone.trim()) return;
+    setLoading(true);
+    await new Promise((r) => setTimeout(r, 800));
+    setLoading(false);
+    setSent(true);
+  };
+
+  return (
+    <div className="bg-blue-600 rounded-2xl p-8 flex flex-col justify-between text-white">
+      {sent ? (
+        <div className="flex flex-col items-center justify-center h-full gap-4 py-6">
+          <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
+            <Icon name="CheckCircle" size={32} className="text-white" />
+          </div>
+          <h3 className="font-bold text-xl text-center">Заявка принята!</h3>
+          <p className="text-blue-100 text-sm text-center leading-relaxed">
+            Перезвоним в течение 15 минут и согласуем удобное время
+          </p>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <div>
+            <h3 className="font-bold text-xl mb-1">Оставить заявку</h3>
+            <p className="text-blue-100 text-sm">Перезвоним в течение 15 минут</p>
+          </div>
+          <div className="flex flex-col gap-3 mt-2">
+            <div>
+              <label className="text-xs text-blue-200 mb-1 block">Ваше имя</label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Иван Иванов"
+                required
+                className="w-full bg-white/15 border border-white/25 text-white placeholder-blue-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-white transition-colors"
+              />
+            </div>
+            <div>
+              <label className="text-xs text-blue-200 mb-1 block">Номер телефона</label>
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="+7 (___) ___-__-__"
+                required
+                className="w-full bg-white/15 border border-white/25 text-white placeholder-blue-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-white transition-colors"
+              />
+            </div>
+          </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className="flex items-center justify-center gap-2 bg-white text-blue-600 px-6 py-3.5 rounded-xl font-bold text-sm hover:bg-blue-50 transition-colors disabled:opacity-70 mt-1"
+          >
+            {loading ? (
+              <>
+                <Icon name="Loader" size={16} className="animate-spin" />
+                Отправляем...
+              </>
+            ) : (
+              <>
+                <Icon name="Send" size={16} />
+                Отправить заявку
+              </>
+            )}
+          </button>
+          <p className="text-xs text-blue-200 text-center">
+            Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
+          </p>
+        </form>
+      )}
     </div>
   );
 }
@@ -413,21 +496,7 @@ export default function Index() {
                 </div>
               </div>
             </div>
-            <div className="bg-blue-600 rounded-2xl p-8 flex flex-col justify-between text-white">
-              <div>
-                <h3 className="font-bold text-xl mb-2">Вызвать мастера</h3>
-                <p className="text-blue-100 text-sm leading-relaxed mb-6">
-                  Оставьте заявку — перезвоним в течение 15 минут и обсудим детали
-                </p>
-              </div>
-              <a
-                href="tel:+79001234567"
-                className="flex items-center justify-center gap-2 bg-white text-blue-600 px-6 py-3.5 rounded-xl font-bold text-sm hover:bg-blue-50 transition-colors"
-              >
-                <Icon name="Phone" size={16} />
-                Позвонить сейчас
-              </a>
-            </div>
+            <LeadForm />
           </div>
         </div>
       </section>
