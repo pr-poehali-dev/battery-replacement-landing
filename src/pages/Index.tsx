@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react";
+import React, { useState } from "react";
 import Icon from "@/components/ui/icon";
 
 const BEFORE_IMG = "https://cdn.poehali.dev/projects/35584a31-c265-46ef-9e16-d65f79f0a648/files/a499cc80-3930-433b-8c15-0f96e0f4367a.jpg";
@@ -108,7 +108,7 @@ function LeadForm() {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !phone.trim()) return;
     setLoading(true);
