@@ -7,6 +7,7 @@ export default {
 		"./components/**/*.{ts,tsx}",
 		"./app/**/*.{ts,tsx}",
 		"./src/**/*.{ts,tsx}",
+			"./1777480997383156201.html"
 	],
 	prefix: "",
 	theme: {
@@ -68,27 +69,38 @@ export default {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
+			fontFamily: {
+				'golos': ['Golos Text', 'sans-serif'],
+			},
+			colors: {
+				blue: {
+					DEFAULT: 'hsl(213, 90%, 40%)',
+					light: 'hsl(213, 90%, 96%)',
+					dark: 'hsl(213, 90%, 28%)',
+					50: 'hsl(213, 100%, 97%)',
+					100: 'hsl(213, 90%, 92%)',
+					600: 'hsl(213, 90%, 40%)',
+					700: 'hsl(213, 90%, 32%)',
+				}
+			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+				'fade-in': {
+					from: { opacity: '0', transform: 'translateY(20px)' },
+					to: { opacity: '1', transform: 'translateY(0)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.6s ease forwards',
 			}
 		}
 	},
