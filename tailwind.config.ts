@@ -7,7 +7,6 @@ export default {
 		"./components/**/*.{ts,tsx}",
 		"./app/**/*.{ts,tsx}",
 		"./src/**/*.{ts,tsx}",
-			"./1777480997383156201.html"
 	],
 	prefix: "",
 	theme: {
@@ -62,6 +61,16 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				blue: {
+					DEFAULT: 'hsl(213, 90%, 40%)',
+					light: 'hsl(213, 90%, 96%)',
+					dark: 'hsl(213, 90%, 28%)',
+					50: 'hsl(213, 100%, 97%)',
+					100: 'hsl(213, 90%, 92%)',
+					200: 'hsl(213, 90%, 85%)',
+					600: 'hsl(213, 90%, 40%)',
+					700: 'hsl(213, 90%, 32%)',
 				}
 			},
 			borderRadius: {
@@ -71,17 +80,6 @@ export default {
 			},
 			fontFamily: {
 				'golos': ['Golos Text', 'sans-serif'],
-			},
-			colors: {
-				blue: {
-					DEFAULT: 'hsl(213, 90%, 40%)',
-					light: 'hsl(213, 90%, 96%)',
-					dark: 'hsl(213, 90%, 28%)',
-					50: 'hsl(213, 100%, 97%)',
-					100: 'hsl(213, 90%, 92%)',
-					600: 'hsl(213, 90%, 40%)',
-					700: 'hsl(213, 90%, 32%)',
-				}
 			},
 			keyframes: {
 				'accordion-down': {
